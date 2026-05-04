@@ -45,11 +45,56 @@ end top_basys3;
 architecture top_basys3_arch of top_basys3 is 
   
 	-- declare components and signals
-
-  
+    signal w_clk : std_logic;
+    signal w_cycle : std_logic_vector(3 downto 0);
+    
+    component clock_divider is
+        generic (constant k_DIV : natural := 2);
+        
+        port(   i_clk : in STD_LOGIC;
+                i_reset : in STD_LOGIC;
+                o_clk : out STD_LOGIC
+        ); 
+    end component clock_divider;
+    
+    component controller_fsm is
+        port(   i_reset : in STD_LOGIC;
+                i_adv : in STD_LOGIC;
+                o_cycle : out STD_LOGIC_VECTOR(3 downto 0)
+        );
+    end component controller_fsm;
+    
+    component ALU is
+        port(   i_op : in STD_LOGIC_VECTOR(2 downto 0);
+                i_A : in STD_LOGIC_VECTOR(7 downto 0);
+                i_B : in STD_LOGIC_VECTOR(7 downto 0);
+                o_result : out STD_LOGIC_VECTOR(7 downto 0);
+                o_flags : out STD_LOGIC_VECTOR(3 downto 0)
+        );
+    end component ALU;
+    
+    component twos_comp is
+        port(   i_bin : in STD_LOGIC_VECTOR(7 downto 0);
+                o_sign : out STD_LOGIC;
+                o_hund : out STD_LOGIC_VECTOR(3 downto 0);
+                o_tens : out STD_LOGIC_VECTOR(3 downto 0);
+                o_ones: out STD_LOGIC_VECTOR(3 downto 0)
+        );
+    end component twos_comp;
+    
+    component TDM4 is
+        port(
+        
+        
+        
+        
+        );
+    end component TDM4;
 begin
 	-- PORT MAPS ----------------------------------------
 
+    
+    
 	
 	
 	-- CONCURRENT STATEMENTS ----------------------------
