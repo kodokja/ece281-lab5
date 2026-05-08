@@ -75,7 +75,8 @@ architecture top_basys3_arch of top_basys3 is
     end component clock_divider;
     
     component controller_fsm is
-        port(   i_reset : in STD_LOGIC;
+        port(   clk : in STD_LOGIC;
+                i_reset : in STD_LOGIC;
                 i_adv : in STD_LOGIC;
                 o_cycle : out STD_LOGIC_VECTOR(3 downto 0)
         );
@@ -147,6 +148,7 @@ begin
     
     controller_fsm1 : controller_fsm
         port map(
+            clk => clk,
             i_reset => btnU,
             i_adv => w_button,
             o_cycle => w_cycle
@@ -193,14 +195,14 @@ begin
 	
 	process(clk)
 	begin
-	   if(w_cycle = "0010" and rising_edge(clk)) then
+	   if(w_cycle = "0001" and rising_edge(clk)) then
 	       w_A_reg <= sw(7 downto 0);
 	   end if;
 	end process;
 	
 	process(clk)
 	begin
-	   if(w_cycle = "0100" and rising_edge(clk)) then
+	   if(w_cycle = "0010" and rising_edge(clk)) then
 	       w_B_reg <= sw(7 downto 0);
 	   end if;
 	end process;
@@ -210,7 +212,8 @@ begin
 	              w_result when (w_cycle = "1000") else
 	              "00000000";
 	              
-	seg <= "0000001" when (w_data = "0001") else
+	seg <= "0111111" when (w_sign = "0001" and w_sel = "0111") else
+	       "1111111" when (w_cycle = "0001") else
 	       w_seg;
 	
 	an <= w_sel;
@@ -218,6 +221,7 @@ begin
 	led(2) <= w_cycle(2);
 	led(1) <= w_cycle(1);
 	led(0) <= w_cycle(0);
+	
 	led(15) <= w_flags(3);
 	led(14) <= w_flags(2);
 	led(13) <= w_flags(1);
