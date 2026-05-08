@@ -50,7 +50,7 @@ architecture top_basys3_arch of top_basys3 is
     signal w_clk : std_logic;
     signal w_cycle : std_logic_vector(3 downto 0);
     
-    signal w_data: std_logic_vector(3 downto 0);
+    signal w_data: std_logic_vector(3 downto 0) := "0000";
     signal w_seg : std_logic_vector(6 downto 0);
     signal w_sel : std_logic_vector(3 downto 0);
     
