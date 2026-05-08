@@ -91,7 +91,7 @@ architecture top_basys3_arch of top_basys3 is
     end component button_debounce;
     
     component ALU is
-        port(   i_op : in STD_LOGIC_VECTOR(2 downto 0);
+        port(   i_op : in STD_LOGIC_VECTOR(2 downto 0) := "000";
                 i_A : in STD_LOGIC_VECTOR(7 downto 0);
                 i_B : in STD_LOGIC_VECTOR(7 downto 0);
                 o_result : out STD_LOGIC_VECTOR(7 downto 0);
