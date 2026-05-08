@@ -196,7 +196,7 @@ begin
 	process(clk)
 	begin
 	   if(rising_edge(clk)) then
-           if(w_cycle = "0001" and rising_edge(clk)) then
+           if(w_cycle = "0010" and rising_edge(clk)) then
                w_A_reg <= sw(7 downto 0);
            end if;
 	   end if;
@@ -205,14 +205,14 @@ begin
 	process(clk)
 	begin
 	   if(rising_edge(clk)) then
-           if(w_cycle = "0010") then
+           if(w_cycle = "0100") then
                w_B_reg <= sw(7 downto 0);
            end if;
 	   end if;
 	end process;
 	
-	w_mux_data <= w_A_reg when (w_cycle = "0001") else
-	              w_B_reg when (w_cycle = "0010") else
+	w_mux_data <= w_A_reg when (w_cycle = "0010") else
+	              w_B_reg when (w_cycle = "0100") else
 	              w_result when (w_cycle = "1000") else
 	              "00000000";
 	              
