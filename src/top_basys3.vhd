@@ -154,7 +154,7 @@ begin
             o_cycle => w_cycle
         );
         
-    ALU : ALU
+    ALU1 : ALU
         port map(
             i_op => sw(2 downto 0),
             i_A => w_A_reg,
