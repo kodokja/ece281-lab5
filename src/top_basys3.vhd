@@ -196,7 +196,7 @@ begin
 	process(clk)
 	begin
 	   if(rising_edge(clk)) then
-           if(w_cycle = "0010" and rising_edge(clk)) then
+           if(w_cycle = "0001" and rising_edge(clk)) then
                w_A_reg <= sw(7 downto 0);
            end if;
 	   end if;
@@ -205,7 +205,7 @@ begin
 	process(clk)
 	begin
 	   if(rising_edge(clk)) then
-           if(w_cycle = "0100") then
+           if(w_cycle = "0010") then
                w_B_reg <= sw(7 downto 0);
            end if;
 	   end if;
